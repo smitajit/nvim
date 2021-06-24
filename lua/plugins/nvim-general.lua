@@ -43,8 +43,6 @@ vim.api.nvim_set_keymap('n', '#', "#<Cmd>lua require('hlslens').start()<CR>", {n
 vim.api.nvim_set_keymap('n', 'g*', "g*<Cmd>lua require('hlslens').start()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', 'g#', "g#<Cmd>lua require('hlslens').start()<CR>", {noremap = true})
 
-require('neoscroll').setup()
-
 require"toggleterm".setup {
     size = 25,
     open_mapping = [[<c-\>]],
@@ -96,5 +94,6 @@ require('telescope').setup {
         fzy_native = {override_generic_sorter = false, override_file_sorter = true}
     }
 }
+
 require("telescope").load_extension('lsp_handlers')
 require('telescope').load_extension('fzy_native')

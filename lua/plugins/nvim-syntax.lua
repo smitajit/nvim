@@ -12,6 +12,3 @@ require'nvim-treesitter.configs'.setup {
     },
     rainbow = {enable = false}
 }
-
--- auto pairs
-require('nvim-autopairs').setup()

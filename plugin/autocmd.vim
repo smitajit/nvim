@@ -36,7 +36,7 @@ let g:neoformat_only_msg_on_error = 1
 
 " LSP auto format
 autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.go GoFmt
 autocmd BufWritePre *.rust lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 

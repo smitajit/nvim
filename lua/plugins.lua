@@ -28,20 +28,24 @@ return require('packer').startup(function()
     use 'RRethy/vim-illuminate' -- illuminate word under cursor
     use 'ray-x/lsp_signature.nvim' -- signature while completion functions
     use 'anott03/nvim-lspinstall' -- language server installer
+    use 'mfussenegger/nvim-dap'
+    use {'fatih/vim-go', run = ":GoUpdateBinaries"}
 
     -- syntax ---
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/playground' -- TODO required?
-    use 'rodjek/vim-puppet' -- puppet syntax
+    use 'puppetlabs/puppet-syntax-vim'
+    -- use 'rodjek/vim-puppet' -- puppet syntax
 
     -- completion --
     use 'hrsh7th/nvim-compe'
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/vim-vsnip-integ'
+    use 'Raimondi/delimitMate' -- for auto pairs
 
     -- general plugins
     use 'christoomey/vim-tmux-navigator'
-    use 'windwp/nvim-autopairs' -- auto pair
+    -- use 'windwp/nvim-autopairs' -- auto pair
     use 'tpope/vim-fugitive'
     use 'mbbill/undotree'
     use 't9md/vim-choosewin'
@@ -59,10 +63,12 @@ return require('packer').startup(function()
     use 'gbrlsnchs/telescope-lsp-handlers.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'nvim-telescope/telescope-symbols.nvim'
+    use {'nvim-telescope/telescope-dap.nvim'}
     use 'akinsho/nvim-toggleterm.lua'
     use 'lambdalisue/suda.vim'
     use 'kevinhwang91/nvim-hlslens'
-    use 'karb94/neoscroll.nvim'
+    -- use 'karb94/neoscroll.nvim'
+    use 'psliwka/vim-smoothie'
     use 'rhysd/committia.vim'
 
     -- explorer --

@@ -80,7 +80,10 @@ let g:which_key_map.c = {
 nnoremap <leader>cC  :TCommentBlock<CR>
 nnoremap <leader>ca  :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>cc  :TComment<CR>
-nnoremap <leader>cf  :Neoformat<CR>
+nnoremap <leader>cf  :lua vim.lsp.buf.formatting()<CR>
+vnoremap <leader>cf  :'<,'>lua vim.lsp.buf.formatting()<CR>
+nnoremap <leader>cF  :Neoformat<CR>
+vnoremap <leader>cF  :'<,'>Neoformat<CR>
 nnoremap <leader>ci  :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>cr  :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>cri :lua vim.lsp.buf.incoming_calls()<cr>
@@ -88,11 +91,9 @@ nnoremap <leader>cro :lua vim.lsp.buf.outgoing_calls()<cr>
 nnoremap <leader>cR  :lua vim.lsp.buf.rename()<CR>
 vnoremap <leader>cc  :'<,'>TComment<CR>
 vnoremap <leader>cC  :'<,'>TCommentBlock<CR>
-vnoremap <leader>cf  :'<,'>Neoformat<CR>
 
 " Register which key map
 call which_key#register(',', "g:which_key_map")
-
 
 " normal mappings
 nnoremap <silent> <Esc>     :nohlsearch<CR>:BClosePreviews<CR><Esc>
@@ -109,3 +110,48 @@ nnoremap          <C-Left>  :TmuxNavigateLeft<cr>
 nnoremap          <C-Down>  :TmuxNavigateDown<cr>
 nnoremap          <C-Up>    :TmuxNavigateUp<cr>
 nnoremap          <C-Right> :TmuxNavigateRight<cr>
+nnoremap 	  <C-n> :NvimTreeToggle<CR>
+
+
+
+" utils.map('n', '<leader>dc', '<cmd>lua require"dap".continue()<CR>') 
+nnoremap <leader>dc 		:lua require"dap".continue()<CR>
+nnoremap <leader>dsv 		:lua require"dap".step_over()<CR>
+nnoremap <leader>dsi 		:lua require"dap".step_into()<CR>
+nnoremap <leader>dso 		:lua require"dap".step_out()<CR>
+nnoremap <leader>dtb 		:lua require"dap".toggle_breakpoint()<CR>
+nnoremap <leader>dsbr 		:lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>
+nnoremap <leader>dsbm 		:lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>
+nnoremap <leader>dro 		:lua require"dap".repl.open()
+nnoremap <leader>drl 		:lua require"dap".repl.run_last()
+
+nnoremap <leader>dcc 		:lua require"telescope".extensions.dap.commands{}<CR>
+nnoremap <leader>dco 		:lua require"telescope".extensions.dap.configurations{}<CR>
+nnoremap <leader>dv 		:lua require"telescope".extensions.dap.variables{}<CR>
+nnoremap <leader>dlb 		:lua require"telescope".extensions.dap.list_breakpoints{}<CR>
+nnoremap <leader>df 		:lua require"telescope".extensions.dap.frames{}<CR>
+
+
+" utils.map('n', '<leader>dcc', '<cmd>lua require"telescope".extensions.dap.commands{}<CR>')
+" utils.map('n', '<leader>dco', '<cmd>lua require"telescope".extensions.dap.configurations{}<CR>')
+" utils.map('n', '<leader>dlb', '<cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>')
+" utils.map('n', '<leader>dv', '<cmd>lua require"telescope".extensions.dap.variables{}<CR>')
+" utils.map('n', '<leader>df', '<cmd>lua require"telescope".extensions.dap.frames{}<CR>')
+
+
+" nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+" nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+" nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
+" nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+" nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+" nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+" nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+" nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+" nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
+
+
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
