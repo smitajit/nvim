@@ -11,7 +11,8 @@ require('hlslens').setup({
         local indicator, text, chunks
         local abs_r_idx = math.abs(r_idx)
         if abs_r_idx > 1 then
-            indicator = string.format('%d%s', abs_r_idx, sfw ~= (r_idx > 1) and '' or '')
+            indicator = string.format('%d%s', abs_r_idx,
+                                      sfw ~= (r_idx > 1) and '' or '')
         elseif abs_r_idx == 1 then
             indicator = sfw ~= (r_idx == 1) and '' or ''
         else
@@ -34,14 +35,20 @@ require('hlslens').setup({
         render.set_virt(0, lnum - 1, col - 1, chunks, nearest)
     end
 })
-vim.api.nvim_set_keymap('n', 'n', "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>",
+vim.api.nvim_set_keymap('n', 'n',
+                        "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>",
                         {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'N', "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>",
+vim.api.nvim_set_keymap('n', 'N',
+                        "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>",
                         {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '*', "*<Cmd>lua require('hlslens').start()<CR>", {noremap = true})
-vim.api.nvim_set_keymap('n', '#', "#<Cmd>lua require('hlslens').start()<CR>", {noremap = true})
-vim.api.nvim_set_keymap('n', 'g*', "g*<Cmd>lua require('hlslens').start()<CR>", {noremap = true})
-vim.api.nvim_set_keymap('n', 'g#', "g#<Cmd>lua require('hlslens').start()<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '*', "*<Cmd>lua require('hlslens').start()<CR>",
+                        {noremap = true})
+vim.api.nvim_set_keymap('n', '#', "#<Cmd>lua require('hlslens').start()<CR>",
+                        {noremap = true})
+vim.api.nvim_set_keymap('n', 'g*', "g*<Cmd>lua require('hlslens').start()<CR>",
+                        {noremap = true})
+vim.api.nvim_set_keymap('n', 'g#', "g#<Cmd>lua require('hlslens').start()<CR>",
+                        {noremap = true})
 
 require"toggleterm".setup {
     size = 25,
@@ -57,41 +64,43 @@ require"toggleterm".setup {
 local actions = require('telescope.actions')
 require('telescope').setup {
     defaults = {
-        vimgrep_arguments = {'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
-        prompt_position = "top",
-        prompt_prefix = "> ",
-        selection_caret = "> ",
-        entry_prefix = "  ",
-        initial_mode = "insert",
-        selection_strategy = "reset",
+        vimgrep_arguments = {
+            'rg', '--color=never', '--no-heading', '--with-filename',
+            '--line-number', '--column', '--smart-case'
+        },
+        layout_config = {
+            prompt_position = "top",
+        },
         sorting_strategy = "ascending",
-        layout_strategy = "horizontal",
-        layout_defaults = {horizontal = {mirror = false}, vertical = {mirror = false}},
-        file_sorter = require'telescope.sorters'.get_fuzzy_file,
-        generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
-        shorten_path = true,
         winblend = 0,
-        width = 0.75,
         color_devicons = true,
-        use_less = true,
-        grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-        qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-
-        -- Developer configurations: Not meant for general override
-        buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
-
-        -- mine--
-        file_ignore_patterns = {'tags'},
-        mappings = {i = {['<esc>'] = actions.close}}
+        -- -- mine--
+        file_ignore_patterns = {'tags', 'vendor'},
     },
     extensions = {
         lsp_handlers = {
-            location = {telescope = {}, no_results_message = 'No references found'},
+            location = {
+                telescope = {},
+                no_results_message = 'No references found'
+            },
             symbol = {telescope = {}, no_results_message = 'No symbols found'},
-            call_hierarchy = {telescope = {}, no_results_message = 'No calls found'},
-            code_action = {telescope = require('telescope.themes').get_dropdown({}), no_results_message = 'No code actions available', prefix = ''}
+            call_hierarchy = {
+                telescope = {},
+                no_results_message = 'No calls found'
+            },
+            code_action = {
+                telescope = require('telescope.themes').get_dropdown({}),
+                no_results_message = 'No code actions available',
+                prefix = ''
+            }
         },
-        fzy_native = {override_generic_sorter = false, override_file_sorter = true}
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true
+        },
+	fzf_writer = {
+            use_highlighter = true
+        }
     }
 }
 

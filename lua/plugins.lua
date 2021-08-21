@@ -18,6 +18,7 @@ return require('packer').startup(function()
     use 'akinsho/nvim-bufferline.lua'
     use 'norcalli/nvim-colorizer.lua'
     use 'smitajit/palenight.vim' -- color scheme
+    use 'xiyaowong/nvim-transparent'
 
     -- LSP
     use 'neovim/nvim-lspconfig' -- language server
@@ -30,6 +31,9 @@ return require('packer').startup(function()
     use 'anott03/nvim-lspinstall' -- language server installer
     use 'mfussenegger/nvim-dap'
     use {'fatih/vim-go', run = ":GoUpdateBinaries"}
+    use {'dense-analysis/ale'}
+    use {'nathunsmitty/nvim-ale-diagnostic'}
+    use {'simrat39/rust-tools.nvim'}
 
     -- syntax ---
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -62,6 +66,7 @@ return require('packer').startup(function()
     use "nvim-telescope/telescope.nvim"
     use 'gbrlsnchs/telescope-lsp-handlers.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
+    use 'nvim-telescope/telescope-fzf-writer.nvim'
     use 'nvim-telescope/telescope-symbols.nvim'
     use {'nvim-telescope/telescope-dap.nvim'}
     use 'akinsho/nvim-toggleterm.lua'

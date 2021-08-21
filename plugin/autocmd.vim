@@ -40,3 +40,13 @@ autocmd BufWritePre *.go GoFmt
 autocmd BufWritePre *.rust lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
+
+let g:ale_completion_enabled = 0
+let g:ale_completion_autoimport = 0
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = ''
+let g:ale_virtualtext_cursor = 1
+
+let g:go_fmt_fail_silently = 1

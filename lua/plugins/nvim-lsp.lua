@@ -36,6 +36,7 @@ local lsp_kind = require('lspkind')
 lsp_kind.init {symbol_map = kind_symbols}
 
 local lsp_signature = require('lsp_signature')
+require("nvim-ale-diagnostic")
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
@@ -53,13 +54,13 @@ local on_attach = function(client, bufnr)
 
     lsp_status.on_attach(client)
     -- lsp_signature.on_attach()
-    lsp_signature.on_attach({
-      bind = true, -- This is mandatory, otherwise border config won't get registered.
-      handler_opts = {
-        border = "single"
-      },
-      hint_enable = false
-    })
+    -- lsp_signature.on_attach({
+    --   bind = true, -- This is mandatory, otherwise border config won't get registered.
+    --   -- handler_opts = {
+    --   --   border = "single"
+    --   -- },
+    --   hint_enable = false
+    -- })
 
     -- Mappings.
     local opts = {noremap = true, silent = true}
@@ -136,7 +137,7 @@ local servers = {
     rust_analyzer = {},
     gopls = {settings = {analyses = {unusedparams = true}, staticcheck = true, allExperiments = true}},
     vimls = {},
-    pyls = {},
+    -- pyls = {},
     bashls = {},
     solargraph = {},
     dockerls = {},
@@ -165,6 +166,8 @@ local servers = {
         }
     }
 }
+
+require('rust-tools').setup({})
 
 local snippet_capabilities = {
     textDocument = {completion = {completionItem = {snippetSupport = true}}}

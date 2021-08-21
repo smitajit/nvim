@@ -21,20 +21,20 @@ require'colorizer'.setup({'*'}, {
     css_fn = true -- Enable all CSS *functions*: rgb_fn, hsl_fn
 })
 
--- disable background ------
----@diagnostic disable-next-line: lowercase-global
-function create_augroup(name, autocmds)
-    ---@diagnostic disable-next-line: lowercase-global
-    cmd = vim.cmd
-    cmd('augroup ' .. name)
-    cmd('autocmd!')
-    for _, autocmd in ipairs(autocmds) do cmd('autocmd ' .. table.concat(autocmd, ' ')) end
-    cmd('augroup END')
-end
-function HighlightNone()
-    hi("Normal", {ctermbg = "NONE", guibg = "NONE"})
-end
-create_augroup("HighlightNone", {{"ColorScheme", "*", "lua HighlightNone()"}})
+-- -- disable background ------
+-- ---@diagnostic disable-next-line: lowercase-global
+-- function create_augroup(name, autocmds)
+--     ---@diagnostic disable-next-line: lowercase-global
+--     cmd = vim.cmd
+--     cmd('augroup ' .. name)
+--     cmd('autocmd!')
+--     for _, autocmd in ipairs(autocmds) do cmd('autocmd ' .. table.concat(autocmd, ' ')) end
+--     cmd('augroup END')
+-- end
+-- function HighlightNone()
+--     hi("Normal", {ctermbg = "NONE", guibg = "NONE"})
+-- end
+-- create_augroup("HighlightNone", {{"ColorScheme", "*", "lua HighlightNone()"}})
 
 -- remove tilde ~ signs from empty buffers
 vim.cmd('let &fcs=\'eob: \'')
@@ -45,16 +45,30 @@ function LspStatus()
     return require("lsp-status").status()
 end
 require('lualine').setup {
-    options = {theme = lualine_theme, section_separators = {'', ''}, component_separators = {'|', '|'}, icons_enabled = true},
+    options = {
+        theme = lualine_theme,
+        section_separators = {'', ''},
+        component_separators = {'|', '|'},
+        icons_enabled = true
+    },
     sections = {
         lualine_a = {{'mode', upper = true}},
         lualine_b = {{'branch', icon = ''}},
-        lualine_c = {{'filename', file_status = true, full_path = true, shorten = true}},
+        lualine_c = {
+            {'filename', file_status = true, full_path = true, shorten = true}
+        },
         lualine_x = {LspStatus, 'encoding', 'fileformat', 'filetype'},
         lualine_y = {'progress'},
         lualine_z = {'location'}
     },
-    inactive_sections = {lualine_a = {}, lualine_b = {}, lualine_c = {'filename'}, lualine_x = {'location'}, lualine_y = {}, lualine_z = {}}
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {'filename'},
+        lualine_x = {'location'},
+        lualine_y = {},
+        lualine_z = {}
+    }
 }
 
 -- bufferline setup --
@@ -71,3 +85,21 @@ require'bufferline'.setup {
         end
     }
 }
+
+require("transparent").setup({
+    enable = true, -- boolean: enable transparent
+    extra_groups = { -- table/string: additional groups that should be clear
+        "all"
+        -- In particular, when you set it to 'all', that means all avaliable groups
+
+        -- example of akinsho/nvim-bufferline.lua
+        -- "BufferLineTabClose",
+        -- "BufferlineBufferSelected",
+        -- "BufferLineFill",
+        -- "BufferLineBackground",
+        -- "BufferLineSeparator",
+        -- "BufferLineIndicatorSelected",
+    },
+    exclude = {} -- table: groups you don't want to clear
+})
+
