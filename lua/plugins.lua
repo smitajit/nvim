@@ -4,7 +4,8 @@ local fn = vim.fn
 
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+    execute('!git clone https://github.com/wbthomason/packer.nvim ' ..
+                install_path)
     execute 'packadd packer.nvim'
 end
 
@@ -13,7 +14,7 @@ return require('packer').startup(function()
 
     -- look and feel---
     use 'kyazdani42/nvim-web-devicons'
-    use 'nvim-lua/lsp-status.nvim'
+    -- use 'nvim-lua/lsp-status.nvim'
     use 'hoob3rt/lualine.nvim'
     use 'akinsho/nvim-bufferline.lua'
     use 'norcalli/nvim-colorizer.lua'
@@ -21,25 +22,21 @@ return require('packer').startup(function()
     use 'xiyaowong/nvim-transparent'
 
     -- LSP
-    use 'neovim/nvim-lspconfig' -- language server
-    use 'onsails/lspkind-nvim' -- pictogram for lsp completion
+    use {'neoclide/coc.nvim', branch = "release"}
     use 'tomtom/tcomment_vim' -- code commenting
-    use 'sbdchd/neoformat' -- code formating
+    use 'sbdchd/neoformat' -- code formatting
     use 'vim-test/vim-test' -- test test code
     use 'RRethy/vim-illuminate' -- illuminate word under cursor
-    use 'ray-x/lsp_signature.nvim' -- signature while completion functions
-    use 'anott03/nvim-lspinstall' -- language server installer
     use 'mfussenegger/nvim-dap'
     use {'fatih/vim-go', run = ":GoUpdateBinaries"}
     use {'dense-analysis/ale'}
-    use {'nathunsmitty/nvim-ale-diagnostic'}
-    use {'simrat39/rust-tools.nvim'}
+    -- use {'nathunsmitty/nvim-ale-diagnostic'}
+    -- use {'simrat39/rust-tools.nvim'}
 
     -- syntax ---
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    use 'nvim-treesitter/playground' -- TODO required?
-    use 'puppetlabs/puppet-syntax-vim'
-    -- use 'rodjek/vim-puppet' -- puppet syntax
+    -- use 'nvim-treesitter/playground' -- TODO required?
+    use 'puppetlabs/puppet-syntax-vim' -- puppet syntax
 
     -- completion --
     use 'hrsh7th/nvim-compe'
@@ -49,7 +46,6 @@ return require('packer').startup(function()
 
     -- general plugins
     use 'christoomey/vim-tmux-navigator'
-    -- use 'windwp/nvim-autopairs' -- auto pair
     use 'tpope/vim-fugitive'
     use 'mbbill/undotree'
     use 't9md/vim-choosewin'
@@ -63,16 +59,9 @@ return require('packer').startup(function()
     use 'chrisbra/vim-diff-enhanced'
     use 'ludovicchabant/vim-gutentags'
     use 'justinmk/vim-sneak'
-    use "nvim-telescope/telescope.nvim"
-    use 'gbrlsnchs/telescope-lsp-handlers.nvim'
-    use 'nvim-telescope/telescope-fzy-native.nvim'
-    use 'nvim-telescope/telescope-fzf-writer.nvim'
-    use 'nvim-telescope/telescope-symbols.nvim'
-    use {'nvim-telescope/telescope-dap.nvim'}
     use 'akinsho/nvim-toggleterm.lua'
     use 'lambdalisue/suda.vim'
     use 'kevinhwang91/nvim-hlslens'
-    -- use 'karb94/neoscroll.nvim'
     use 'psliwka/vim-smoothie'
     use 'rhysd/committia.vim'
 
@@ -80,5 +69,7 @@ return require('packer').startup(function()
     use 'kyazdani42/nvim-tree.lua'
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
-
+    use {'junegunn/fzf'}
+    use 'junegunn/fzf.vim'
+    use {'antoinemadec/coc-fzf', branch = 'release'}
 end)

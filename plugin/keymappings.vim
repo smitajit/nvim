@@ -58,37 +58,30 @@ let g:which_key_map['z'] = [ ':BResizeZoom'			 , 'Toggle zoom' ]
 let g:which_key_map.s = {
 			\ 'name' : '+search' ,
 			\ }
-nnoremap <leader>sb :Telescope buffers<CR>
-nnoremap <leader>sB :Telescope builtin<CR>
-nnoremap <leader>sc :Telescope commands<CR>
-nnoremap <leader>sC :Telescope colorscheme<CR>
-nnoremap <leader>sd :Telescope lsp_document_diagnostics<CR>
-nnoremap <leader>sD :Telescope lsp_workspace_diagnostics<CR>
-nnoremap <leader>sf :Telescope find_files<CR>
-nnoremap <leader>sg :Telescope git_files<CR>
-nnoremap <leader>sh :Telescope help_tags<CR>
-nnoremap <leader>ss :Telescope live_grep<CR>
-nnoremap <leader>sS :Telescope symbols<CR>
-nnoremap <leader>st :Telescope tags<CR>
-nnoremap <leader>so :Telescope lsp_document_symbols<CR>
-nnoremap <leader>sw :Telescope lsp_workspace_symbols<CR>
+nnoremap <leader>sc :Commands<CR>
+nnoremap <leader>sC :Colors<CR>
+nnoremap <leader>sd :CocFzfList diagnostics<CR>
+nnoremap <leader>sf :Files<CR>
+nnoremap <leader>sg :GitFiles<CR>
+nnoremap <leader>sh :Helptags<CR>
+nnoremap <leader>ss :RG<CR>
+nnoremap <leader>sS :CocFzfList symbols<CR>
+nnoremap <leader>so :CocFzfList outline<CR>
 
 " c is for code actions
 let g:which_key_map.c = {
 			\ 'name' : '+code' ,
 			\ }
 nnoremap <leader>cC  :TCommentBlock<CR>
-nnoremap <leader>ca  :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>ca  :CocAction<CR>
 nnoremap <leader>cc  :TComment<CR>
-nnoremap <leader>cf  :lua vim.lsp.buf.formatting()<CR>
-vnoremap <leader>cf  :'<,'>lua vim.lsp.buf.formatting()<CR>
+xmap     <leader>cf  <Plug>(coc-format-selected)
+nmap     <leader>cf  <Plug>(coc-format-selected)
 nnoremap <leader>cF  :Neoformat<CR>
 vnoremap <leader>cF  :'<,'>Neoformat<CR>
-nnoremap <leader>ci  :lua vim.lsp.buf.implementation()<CR>
-nnoremap <leader>cr  :lua vim.lsp.buf.references()<CR>
-nnoremap <leader>cri :lua vim.lsp.buf.incoming_calls()<cr>
-nnoremap <leader>cro :lua vim.lsp.buf.outgoing_calls()<cr>
-nnoremap <leader>cR  :lua vim.lsp.buf.rename()<CR>
+nmap     <leader>ci  <Plug>(coc-implementation)
+nmap     <leader>cr  <Plug>(coc-references)
+nmap     <leader>cR  <Plug>(coc-rename)
 vnoremap <leader>cc  :'<,'>TComment<CR>
 vnoremap <leader>cC  :'<,'>TCommentBlock<CR>
 
@@ -110,7 +103,7 @@ nnoremap          <C-Left>  :TmuxNavigateLeft<cr>
 nnoremap          <C-Down>  :TmuxNavigateDown<cr>
 nnoremap          <C-Up>    :TmuxNavigateUp<cr>
 nnoremap          <C-Right> :TmuxNavigateRight<cr>
-nnoremap 	  <C-n> :NvimTreeToggle<CR>
+nnoremap 	  <C-n>     :NvimTreeToggle<CR>
 
 
 
@@ -125,35 +118,9 @@ nnoremap <leader>dsbm 		:lua require"dap".set_breakpoint(nil, nil, vim.fn.input(
 nnoremap <leader>dro 		:lua require"dap".repl.open()
 nnoremap <leader>drl 		:lua require"dap".repl.run_last()
 
-nnoremap <leader>dcc 		:lua require"telescope".extensions.dap.commands{}<CR>
-nnoremap <leader>dco 		:lua require"telescope".extensions.dap.configurations{}<CR>
-nnoremap <leader>dv 		:lua require"telescope".extensions.dap.variables{}<CR>
-nnoremap <leader>dlb 		:lua require"telescope".extensions.dap.list_breakpoints{}<CR>
-nnoremap <leader>df 		:lua require"telescope".extensions.dap.frames{}<CR>
-
-
-" utils.map('n', '<leader>dcc', '<cmd>lua require"telescope".extensions.dap.commands{}<CR>')
-" utils.map('n', '<leader>dco', '<cmd>lua require"telescope".extensions.dap.configurations{}<CR>')
-" utils.map('n', '<leader>dlb', '<cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>')
-" utils.map('n', '<leader>dv', '<cmd>lua require"telescope".extensions.dap.variables{}<CR>')
-" utils.map('n', '<leader>df', '<cmd>lua require"telescope".extensions.dap.frames{}<CR>')
-
-
-" nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
-" nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
-" nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
-" nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
-" nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
-" nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-" nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-" nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
-" nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
-
 
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
-nnoremap c* *Ncgn

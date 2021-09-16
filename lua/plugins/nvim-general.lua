@@ -61,48 +61,48 @@ require"toggleterm".setup {
     direction = 'horizontal'
 }
 
-local actions = require('telescope.actions')
-require('telescope').setup {
-    defaults = {
-        vimgrep_arguments = {
-            'rg', '--color=never', '--no-heading', '--with-filename',
-            '--line-number', '--column', '--smart-case'
-        },
-        layout_config = {
-            prompt_position = "top",
-        },
-        sorting_strategy = "ascending",
-        winblend = 0,
-        color_devicons = true,
-        -- -- mine--
-        file_ignore_patterns = {'tags', 'vendor'},
-    },
-    extensions = {
-        lsp_handlers = {
-            location = {
-                telescope = {},
-                no_results_message = 'No references found'
-            },
-            symbol = {telescope = {}, no_results_message = 'No symbols found'},
-            call_hierarchy = {
-                telescope = {},
-                no_results_message = 'No calls found'
-            },
-            code_action = {
-                telescope = require('telescope.themes').get_dropdown({}),
-                no_results_message = 'No code actions available',
-                prefix = ''
-            }
-        },
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true
-        },
-	fzf_writer = {
-            use_highlighter = true
-        }
-    }
-}
-
-require("telescope").load_extension('lsp_handlers')
-require('telescope').load_extension('fzy_native')
+-- local actions = require('telescope.actions')
+-- require('telescope').setup {
+--     defaults = {
+--         vimgrep_arguments = {
+--             'rg', '--color=never', '--no-heading', '--with-filename',
+--             '--line-number', '--column', '--smart-case'
+--         },
+--         layout_config = {
+--             prompt_position = "top",
+--         },
+--         sorting_strategy = "ascending",
+--         winblend = 0,
+--         color_devicons = true,
+--         -- -- mine--
+--         file_ignore_patterns = {'tags', 'vendor'},
+--     },
+--     extensions = {
+--         lsp_handlers = {
+--             location = {
+--                 telescope = {},
+--                 no_results_message = 'No references found'
+--             },
+--             symbol = {telescope = {}, no_results_message = 'No symbols found'},
+--             call_hierarchy = {
+--                 telescope = {},
+--                 no_results_message = 'No calls found'
+--             },
+--             code_action = {
+--                 telescope = require('telescope.themes').get_dropdown({}),
+--                 no_results_message = 'No code actions available',
+--                 prefix = ''
+--             }
+--         },
+--         fzy_native = {
+--             override_generic_sorter = false,
+--             override_file_sorter = true
+--         },
+-- 	fzf_writer = {
+--             use_highlighter = true
+--         }
+--     }
+-- }
+--
+-- -- require("telescope").load_extension('lsp_handlers')
+-- require('telescope').load_extension('fzy_native')

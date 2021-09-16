@@ -21,21 +21,6 @@ require'colorizer'.setup({'*'}, {
     css_fn = true -- Enable all CSS *functions*: rgb_fn, hsl_fn
 })
 
--- -- disable background ------
--- ---@diagnostic disable-next-line: lowercase-global
--- function create_augroup(name, autocmds)
---     ---@diagnostic disable-next-line: lowercase-global
---     cmd = vim.cmd
---     cmd('augroup ' .. name)
---     cmd('autocmd!')
---     for _, autocmd in ipairs(autocmds) do cmd('autocmd ' .. table.concat(autocmd, ' ')) end
---     cmd('augroup END')
--- end
--- function HighlightNone()
---     hi("Normal", {ctermbg = "NONE", guibg = "NONE"})
--- end
--- create_augroup("HighlightNone", {{"ColorScheme", "*", "lua HighlightNone()"}})
-
 -- remove tilde ~ signs from empty buffers
 vim.cmd('let &fcs=\'eob: \'')
 
@@ -57,7 +42,7 @@ require('lualine').setup {
         lualine_c = {
             {'filename', file_status = true, full_path = true, shorten = true}
         },
-        lualine_x = {LspStatus, 'encoding', 'fileformat', 'filetype'},
+        lualine_x = {'g:coc_status', 'encoding', 'fileformat', 'filetype'},
         lualine_y = {'progress'},
         lualine_z = {'location'}
     },
