@@ -11,51 +11,50 @@ end
 
 return require('packer').startup(function()
     use {'wbthomason/packer.nvim', opt = true}
-
-    -- look and feel---
+    --------------- LOOK AND FEEL -----------------
     use 'kyazdani42/nvim-web-devicons'
-    -- use 'nvim-lua/lsp-status.nvim'
     use 'hoob3rt/lualine.nvim'
     use 'akinsho/nvim-bufferline.lua'
     use 'norcalli/nvim-colorizer.lua'
-    use 'smitajit/palenight.vim' -- color scheme
     use 'xiyaowong/nvim-transparent'
-
-    -- LSP
+    use 'smitajit/palenight.vim'                    			-- color scheme
+    use 'rebelot/kanagawa.nvim'
+    ---------------- LSP --------------------------
     use {'neoclide/coc.nvim', branch = "release"}
-    use 'tomtom/tcomment_vim' -- code commenting
-    use 'sbdchd/neoformat' -- code formatting
-    use 'vim-test/vim-test' -- test test code
-    use 'RRethy/vim-illuminate' -- illuminate word under cursor
+    use 'tomtom/tcomment_vim' 						-- code commenting
+    use 'sbdchd/neoformat' 						-- code formatting
+    use 'vim-test/vim-test' 						-- test test code
+    use 'RRethy/vim-illuminate' 					-- illuminate word under cursor
     use 'mfussenegger/nvim-dap'
     use {'fatih/vim-go', run = ":GoUpdateBinaries"}
     use {'dense-analysis/ale'}
-    -- use {'nathunsmitty/nvim-ale-diagnostic'}
-    -- use {'simrat39/rust-tools.nvim'}
-
-    -- syntax ---
+    --------------- SYNTAX ------------------------
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    -- use 'nvim-treesitter/playground' -- TODO required?
-    use 'puppetlabs/puppet-syntax-vim' -- puppet syntax
-
-    -- completion --
+    use 'puppetlabs/puppet-syntax-vim' 					-- puppet syntax
+    --------------- EXPLORER ----------------------
+    use { 'kyazdani42/nvim-tree.lua' , config = function() require'nvim-tree'.setup {} end }
+    use 'nvim-lua/popup.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use {'junegunn/fzf'}
+    use 'junegunn/fzf.vim'
+    use {'antoinemadec/coc-fzf', branch = 'release'}
+    --------------- COMPLETION --------------------
     use 'hrsh7th/nvim-compe'
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/vim-vsnip-integ'
-    use 'Raimondi/delimitMate' -- for auto pairs
-
-    -- general plugins
+    use 'Raimondi/delimitMate' 						-- for auto pairs
+    --------------- GENERAL -----------------------
     use 'christoomey/vim-tmux-navigator'
     use 'tpope/vim-fugitive'
     use 'mbbill/undotree'
     use 't9md/vim-choosewin'
     use 'liuchengxu/vim-which-key'
-    use 'majutsushi/tagbar' -- tagbar
-    use 'mhinz/vim-signify' -- column indicator
-    use 'smitajit/bufutils.vim' -- buffer utilities
-    use 'npxbr/glow.nvim' -- preview markdown files
-    use 'gennaro-tedesco/nvim-peekup' -- clipboard thingy
-    use 'kamykn/spelunker.vim' -- spell
+    use 'majutsushi/tagbar' 						-- tagbar
+    use 'mhinz/vim-signify' 						-- column indicator
+    use 'smitajit/bufutils.vim' 					-- buffer utilities
+    use 'npxbr/glow.nvim' 						-- preview markdown files
+    use 'gennaro-tedesco/nvim-peekup' 					-- clipboard thingy
+    use 'kamykn/spelunker.vim' 						-- spell
     use 'chrisbra/vim-diff-enhanced'
     use 'ludovicchabant/vim-gutentags'
     use 'justinmk/vim-sneak'
@@ -65,11 +64,15 @@ return require('packer').startup(function()
     use 'psliwka/vim-smoothie'
     use 'rhysd/committia.vim'
 
-    -- explorer --
-    use 'kyazdani42/nvim-tree.lua'
-    use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use {'junegunn/fzf'}
-    use 'junegunn/fzf.vim'
-    use {'antoinemadec/coc-fzf', branch = 'release'}
+    use 'MunifTanjim/nui.nvim'
+    use 'rcarriga/nvim-notify'
+    use({"folke/noice.nvim", event = "VimEnter", config = function()
+	    require("noice").setup()
+  end,
+  requires = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+    "rcarriga/nvim-notify",
+    }
+})
 end)
